@@ -34,22 +34,23 @@ class MainActivity : AppCompatActivity() {
         val contacts = contactProvider.fetchContacts()
 
         // Create an array of contact strings for the ListView adapter
-        val contactStrings = contacts.map { "${it.first}: ${it.second}" }
+        val contactStrings = contacts.map { "${it.first}" }
 
         // Create an ArrayAdapter and set it to the ListView
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, contactStrings)
         contactsListView.adapter = adapter
-    }
-    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val selectedContact = contactProvider.fetchContacts()[position]
+        // Set the item click listener for the ListView
+        contactsListView.setOnItemClickListener { _, _, position, _ ->
+            val selectedContact = contactProvider.fetchContacts()[position]
 
-        // Create an intent to open the ContactDetailsActivity
-        val intent = Intent(this, ContactInformationActivity::class.java).apply {
-            putExtra("contactName", selectedContact.first)
-            putExtra("contactNumber", selectedContact.second)
+            // Create an intent to open the ContactDetailsActivity
+            val intent = Intent(this, ContactInformationActivity::class.java).apply {
+                putExtra("contactID", selectedContact.second)
+            }
+            startActivity(intent)
         }
-        startActivity(intent)
     }
+
     fun OpenMenuFunc(view: View) {
         val intent = Intent(this, ContactInformationActivity::class.java)
         startActivity(intent)
