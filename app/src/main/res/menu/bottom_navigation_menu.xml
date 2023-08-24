@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_fix"
+        android:icon="@drawable/pen_icon"
+        android:title="Update" />
+    <item
+        android:id="@+id/navigation_share"
+        android:icon="@drawable/share_icon"
+        android:title="Share" />
+    <item
+        android:id="@+id/navigation_delete"
+        android:icon="@drawable/delete_icon"
+        android:title="Delete" />
+</menu>

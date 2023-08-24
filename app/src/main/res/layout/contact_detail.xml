@@ -1,0 +1,272 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_white_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <!-- Left Column -->
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/txt_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:textSize="12sp"
+                    android:text="Phone Number"
+                    />
+
+                <TextView
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/txt_phonenum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_white_button"
+                    android:gravity="start"
+                    android:textSize="15sp"
+                    android:text="0357 623 945"
+                    android:textColor="@color/black"
+                    android:textStyle ="bold"/>
+
+            </LinearLayout>
+            <!-- Right Column -->
+
+            <ImageView
+                android:background="@drawable/rounded_white_button"
+                android:layout_marginRight="18dp"
+                android:id="@+id/img_phoneicon"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:padding = "8dp"
+                android:src="@drawable/phone_number_icon"
+                android:gravity="end" />
+
+        </TableRow>
+        <TableRow
+            android:layout_marginTop ="10dp"
+            android:background="@drawable/rounded_white_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <!-- Left Column -->
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/txt_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:textSize="12sp"
+                    android:text="Email Address"
+                    />
+
+                <TextView
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/email_in"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_white_button"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:text="hoangtranminhduc1005@gmail.com"
+                    android:textColor="@color/black"
+                    android:textStyle ="bold"/>
+
+            </LinearLayout>
+            <!-- Right Column -->
+
+            <ImageView
+                android:background="@drawable/rounded_white_button"
+                android:layout_marginRight="18dp"
+                android:id="@+id/img_email_con"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:padding = "8dp"
+                android:src="@drawable/email"
+                android:gravity="end" />
+
+        </TableRow>
+        <TableRow
+            android:layout_marginTop ="10dp"
+            android:background="@drawable/rounded_white_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <!-- Left Column -->
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/txt_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:textSize="12sp"
+                    android:text="Address"
+                    />
+
+                <TextView
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/address_in"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_white_button"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:text="số 32 đường Lai xá, Kim Chung, Hoài đức"
+                    android:textColor="@color/black"
+                    android:textStyle ="bold"/>
+
+            </LinearLayout>
+            <!-- Right Column -->
+
+            <ImageView
+                android:background="@drawable/rounded_white_button"
+                android:layout_marginRight="18dp"
+                android:id="@+id/img_address"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:padding = "8dp"
+                android:src="@drawable/address"
+                android:gravity="end" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_marginTop ="10dp"
+            android:background="@drawable/rounded_white_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <!-- Left Column -->
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/txt_birthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:textSize="12sp"
+                    android:text="Birthday"
+                    />
+
+                <TextView
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/birthday_in"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_white_button"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:text="10/05/2001"
+                    android:textColor="@color/black"
+                    android:textStyle ="bold"/>
+
+            </LinearLayout>
+            <!-- Right Column -->
+
+            <ImageView
+                android:background="@drawable/rounded_white_button"
+                android:layout_marginRight="18dp"
+                android:id="@+id/img_birthday"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:padding = "8dp"
+                android:src="@drawable/birthday"
+                android:gravity="end" />
+
+        </TableRow>
+        <TableRow
+            android:layout_marginTop ="10dp"
+            android:background="@drawable/rounded_white_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <!-- Left Column -->
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="start">
+
+                <TextView
+                    android:id="@+id/txt_birthday2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="start"
+                    android:textSize="12sp"
+                    android:text="Birthday"
+                    />
+
+                <TextView
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/birthday_in2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_white_button"
+                    android:gravity="start"
+                    android:textSize="14sp"
+                    android:text="10/05/2001"
+                    android:textColor="@color/black"
+                    android:textStyle ="bold"/>
+
+            </LinearLayout>
+            <!-- Right Column -->
+
+            <ImageView
+                android:background="@drawable/rounded_white_button"
+                android:layout_marginRight="18dp"
+                android:id="@+id/img_birthday2"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:padding = "8dp"
+                android:src="@drawable/phone_number_icon"
+                android:gravity="end" />
+
+        </TableRow>
+    </TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
