@@ -56,13 +56,15 @@
                >
                <TextView
                    android:gravity="center"
-                   android:id="@+id/textView2"
+                   android:id="@+id/name_in"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:text="A đức"
                    android:textColor="@color/black"
-                   android:textSize="30sp"
+                   android:textSize="18sp"
                    android:textStyle="bold"
+                   android:maxLines="2"
+                   android:ellipsize="end"
                    />
            </TableRow>
             <TableRow
@@ -98,7 +100,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Call"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textColor="@color/black" />
                 </LinearLayout>
                 <LinearLayout
@@ -126,7 +128,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Message"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textColor="@color/black" />
                 </LinearLayout>
             </TableRow>
