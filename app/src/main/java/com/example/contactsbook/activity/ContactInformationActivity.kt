@@ -63,7 +63,7 @@ class ContactInformationActivity : AppCompatActivity() {
          */
         val contactdetails : ContactContentProvider.ContactDetails = contactContentProvider.getContactDetails(contactID!!)
         name_in_txt.text = contactdetails.displayName
-        phone_in_txt.text = contactdetails.phoneNumbers
+        phone_in_txt.text = formatPhoneNumber(contactdetails.phoneNumbers)
         /*
        if(contact doesn't have some data (null) -> set null text
    */
@@ -112,7 +112,7 @@ class ContactInformationActivity : AppCompatActivity() {
 
         val contactdetails: ContactContentProvider.ContactDetails = contactContentProvider.getContactDetails(longId)
         Log.v("check","contact details: $contactdetails")
-        phone_in_txt_new.text = contactdetails.phoneNumbers
+        phone_in_txt_new.text = formatPhoneNumber(contactdetails.phoneNumbers)
         Log.v("check","contact details: ${contactdetails.displayName}")
         name_in_txt.text = contactdetails.displayName // because name_in_txt doesnt include in new inflate
         if(contactdetails.address == "null"){
@@ -159,6 +159,13 @@ class ContactInformationActivity : AppCompatActivity() {
 
         val date = inputFormat.parse(inputDate)
         return outputFormat.format(date!!)
+    }
+    fun formatPhoneNumber(phoneNumber: String): String {
+        if (phoneNumber.length == 10) {
+            return "${phoneNumber.substring(0, 4)} ${phoneNumber.substring(4, 7)} ${phoneNumber.substring(7)}"
+        } else {
+            return phoneNumber
+        }
     }
 }
 
