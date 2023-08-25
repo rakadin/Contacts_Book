@@ -18,6 +18,7 @@ class ContactContentProvider(private val context: Context) {
 
     // Permission request code
     private val READ_CONTACTS_PERMISSION_REQUEST = 1
+
     // Check if the app has contacts permission
     fun hasContactsPermission(): Boolean {
         return ContextCompat.checkSelfPermission(
@@ -37,7 +38,7 @@ class ContactContentProvider(private val context: Context) {
         }
     }
 
-    //fetch data
+    // Fetch contacts data
     fun fetchContacts(): List<Pair<String, Long>> {
         val contactsList = mutableListOf<Pair<String, Long>>()
         if (hasContactsPermission()) {
@@ -52,7 +53,6 @@ class ContactContentProvider(private val context: Context) {
 
             cursor?.use {
                 val displayNameIndex = it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME)
-                //val phoneNumberIndex = it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
                 val contactID = it.getColumnIndex(ContactsContract.CommonDataKinds.Phone.CONTACT_ID)
                 while (it.moveToNext()) {
                     // Check if the columns exist before extracting data
@@ -64,10 +64,10 @@ class ContactContentProvider(private val context: Context) {
                     val contactNumID = if (contactID != -1 && !it.isNull(contactID)) {
                         it.getLong(contactID)
                     } else {
-                        ""
+                        0L
                     }
-                    if (name.isNotEmpty() && contactNumID!=0) {
-                        contactsList.add(Pair(name, contactNumID) as Pair<String, Long>)
+                    if (name.isNotEmpty() && contactNumID != 0L) {
+                        contactsList.add(Pair(name, contactNumID))
                     }
                 }
             }
@@ -75,28 +75,39 @@ class ContactContentProvider(private val context: Context) {
         return contactsList
     }
 
+    // Fetches detailed contact information based on the provided contact ID
     fun getContactDetails(contactId: Long): ContactDetails {
         val contentResolver = context.contentResolver
-        Log.v("check_contact","get contact details called")
+
+        // Log that the function to get contact details has been called
+        Log.v("check_contact", "get contact details called")
+
+        // Construct the URI for the contact using the provided contact ID
         val contactUri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, contactId)
+        // Log the constructed URI for debugging purposes
         Log.d("check_contact", "Constructed URI: $contactUri")
+
+        // Query the content resolver to fetch contact details
         val cursor = contentResolver.query(contactUri, null, null, null, null)
+        // Log the result cursor for debugging purposes
         Log.d("check_contact", "Constructed URI: $cursor")
 
         var displayName = ""
 
         cursor?.use {
-            Log.v("check_contact","cursor execute")
+            Log.v("check_contact", "cursor execute")
+            // Move to the first row of the cursor
             if (it.moveToFirst()) {
-                Log.v("check_contact","move to first called")
+                Log.v("check_contact", "move to first called")
+                // Retrieve the index of the display name column
                 val displayNameIndex = it.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME)
                 if (displayNameIndex != -1) {
-                    Log.v("check_contact","get name")
+                    Log.v("check_contact", "get name")
+                    // Get the display name value
                     displayName = it.getString(displayNameIndex)
                 } else {
                     // Handle the case when DISPLAY_NAME column doesn't exist
-                    Log.v("check_contact","doesnt exist column")
-
+                    Log.v("check_contact", "doesnt exist column")
                 }
             }
         }
