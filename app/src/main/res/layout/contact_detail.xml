@@ -58,7 +58,7 @@
                 android:layout_width="10dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
-                android:padding = "8dp"
+                android:padding = "5dp"
                 android:src="@drawable/phone_number_icon"
                 android:gravity="end" />
 
@@ -109,7 +109,7 @@
                 android:layout_width="10dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
-                android:padding = "8dp"
+                android:padding = "5dp"
                 android:src="@drawable/email"
                 android:gravity="end" />
 
@@ -160,7 +160,7 @@
                 android:layout_width="10dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
-                android:padding = "8dp"
+                android:padding = "5dp"
                 android:src="@drawable/address"
                 android:gravity="end" />
 
@@ -212,61 +212,11 @@
                 android:layout_width="10dp"
                 android:layout_height="50dp"
                 android:layout_weight="2"
-                android:padding = "8dp"
+                android:padding = "5dp"
                 android:src="@drawable/birthday"
                 android:gravity="end" />
 
         </TableRow>
-        <TableRow
-            android:layout_marginTop ="10dp"
-            android:background="@drawable/rounded_white_button"
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
-            <!-- Left Column -->
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="start">
 
-                <TextView
-                    android:id="@+id/txt_birthday2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:gravity="start"
-                    android:textSize="12sp"
-                    android:text="Birthday"
-                    />
-
-                <TextView
-                    android:layout_marginTop="2dp"
-                    android:layout_marginLeft="20dp"
-                    android:id="@+id/birthday_in2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_white_button"
-                    android:gravity="start"
-                    android:textSize="14sp"
-                    android:text="10/05/2001"
-                    android:textColor="@color/black"
-                    android:textStyle ="bold"/>
-
-            </LinearLayout>
-            <!-- Right Column -->
-
-            <ImageView
-                android:background="@drawable/rounded_white_button"
-                android:layout_marginRight="18dp"
-                android:id="@+id/img_birthday2"
-                android:layout_width="10dp"
-                android:layout_height="50dp"
-                android:layout_weight="2"
-                android:padding = "8dp"
-                android:src="@drawable/phone_number_icon"
-                android:gravity="end" />
-
-        </TableRow>
     </TableLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

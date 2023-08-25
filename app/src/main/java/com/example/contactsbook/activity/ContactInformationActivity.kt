@@ -26,6 +26,14 @@ class ContactInformationActivity : AppCompatActivity() {
     private lateinit var contactContentProvider : ContactContentProvider
     private var  longId : Long = 0
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        intent?.let {
+            longId = it.getLongExtra("contactID", 0)
+            setTextFromChooser(longId)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_information)
@@ -56,11 +64,28 @@ class ContactInformationActivity : AppCompatActivity() {
         val contactdetails : ContactContentProvider.ContactDetails = contactContentProvider.getContactDetails(contactID!!)
         name_in_txt.text = contactdetails.displayName
         phone_in_txt.text = contactdetails.phoneNumbers
-        email_in_txt.text = contactdetails.emailAddresses
-        address_in_txt.text = contactdetails.address
-        birthday_in_txt.text = formatDate(contactdetails.birthday)
+        /*
+       if(contact doesn't have some data (null) -> set null text
+   */
+        if (contactdetails.emailAddresses == "null" ){
+            email_in_txt.text = "No data"
+        } else {
+            email_in_txt.text = contactdetails.emailAddresses
+        }
+
+        if (contactdetails.address == "null" ) {
+            address_in_txt.text = "No data"
+        } else {
+            address_in_txt.text = contactdetails.address
+        }
+
+        if (contactdetails.birthday == "null") {
+            birthday_in_txt.text = "No data"
+        } else {
+            birthday_in_txt.text = formatDate(contactdetails.birthday)
+        }
         longId = contactID
-        Toast.makeText(this, "$longId", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "$longId", Toast.LENGTH_SHORT).show()
         Log.v("check_value","$contactdetails.emailAddresses")
 
     }
@@ -74,16 +99,45 @@ class ContactInformationActivity : AppCompatActivity() {
         historyBut.setBackgroundResource(R.color.white)
         detailsBut.setTextColor(ContextCompat.getColor(this, android.R.color.white))
         historyBut.setTextColor(ContextCompat.getColor(this, android.R.color.black)) // Just an example color
+
         // Inflate the contact_details.xml layout
         val inflater = LayoutInflater.from(this)
         val detailsView = inflater.inflate(R.layout.contact_detail, null)
 
+        // Access the views in the new layout and set the text
+        val address_in_txt_new = detailsView.findViewById<TextView>(R.id.address_in)
+        val phone_in_txt_new = detailsView.findViewById<TextView>(R.id.txt_phonenum)
+        val email_in_txt_new = detailsView.findViewById<TextView>(R.id.email_in)
+        val birthday_in_txt_new = detailsView.findViewById<TextView>(R.id.birthday_in)
+
+        val contactdetails: ContactContentProvider.ContactDetails = contactContentProvider.getContactDetails(longId)
+        Log.v("check","contact details: $contactdetails")
+        phone_in_txt_new.text = contactdetails.phoneNumbers
+        Log.v("check","contact details: ${contactdetails.displayName}")
+        name_in_txt.text = contactdetails.displayName // because name_in_txt doesnt include in new inflate
+        if(contactdetails.address == "null"){
+            address_in_txt_new.text = "No data"
+        }
+        else{
+            address_in_txt_new.text = contactdetails.address
+        }
+        if(contactdetails.emailAddresses == "null"){
+            email_in_txt_new.text = "No data"
+        }
+        else{
+            email_in_txt_new.text = contactdetails.emailAddresses
+        }
+        if(contactdetails.birthday == "null"){
+            birthday_in_txt_new.text = "No data"
+        }
+        else{
+            birthday_in_txt_new.text = formatDate(contactdetails.birthday)
+        }
         // Clear previous content and add the inflated view to the FrameLayout
         frameLayout.removeAllViews()
         frameLayout.addView(detailsView)
-        Log.v("check_value","$longId")
-        setTextFromChooser(longId)
     }
+
     fun ShowHistoryFunc(view: View) {
         // update buttonUI
         historyBut.setBackgroundResource(R.drawable.rounded_blue_button)
@@ -99,6 +153,7 @@ class ContactInformationActivity : AppCompatActivity() {
         frameLayout.addView(detailsView)
     }
     fun formatDate(inputDate: String): String {
+
         val inputFormat = SimpleDateFormat("yyyyMMdd", Locale.getDefault())
         val outputFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
 
