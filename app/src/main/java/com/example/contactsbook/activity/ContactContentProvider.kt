@@ -7,11 +7,9 @@ import android.database.Cursor
 import android.Manifest
 import android.content.ContentUris
 import android.provider.ContactsContract
-import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.appcompat.app.AppCompatActivity
-import android.net.Uri
 import android.util.Log
 
 class ContactContentProvider(private val context: Context) {

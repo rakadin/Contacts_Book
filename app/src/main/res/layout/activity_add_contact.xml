@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_background"
+    tools:context=".activity.AddContactActivity">
+
+    <TableRow
+        android:id="@+id/tableRow"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="start|center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/xBut"
+            android:layout_width="50dp"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginLeft="5dp"
+            android:gravity="start|center_vertical"
+            android:onClick="cancelAddFunc"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:src="@drawable/x_icon" />
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="start|center_vertical"
+            android:text="NEW CONTACT"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/tick_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:gravity="end|center_vertical"
+            android:onClick="acceptAddFunc"
+            android:padding="9dp"
+            android:src="@drawable/gray_tick" />
+
+    </TableRow>
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow">
+
+        <TableRow>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TableRow
+                        android:layout_marginTop="1dp"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/avatart_img_in"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:gravity="center"
+                            android:src="@drawable/avatart" />
+
+                    </TableRow>
+
+                    <TableRow
+
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/rounded_white_button">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="50dp"
+                            android:background="@drawable/rounded_white_button"
+                            android:padding="5dp"
+                            android:src="@drawable/avata_simple" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:textSize="12sp"
+                            android:id="@+id/name_edt"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/rounded_white_button"
+                            android:hint="Name"
+                            android:paddingLeft="8dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/rounded_white_button">
+
+                        <ImageView
+                            android:layout_height="50dp"
+                            android:background="@drawable/rounded_white_button"
+                            android:padding="5dp"
+                            android:src="@drawable/phone_simple" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:textSize="12sp"
+                            android:id="@+id/phone_number_edt"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/rounded_white_button"
+                            android:hint="Number"
+                            android:inputType="number"
+                            android:paddingLeft="8dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/rounded_white_button">
+
+                        <ImageView
+                            android:layout_height="50dp"
+                            android:background="@drawable/rounded_white_button"
+                            android:padding="5dp"
+                            android:src="@drawable/email" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:textSize="12sp"
+                            android:id="@+id/email_edt"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:inputType="textEmailAddress"
+                            android:background="@drawable/rounded_white_button"
+                            android:hint="Email address"
+                            android:paddingLeft="8dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/rounded_white_button">
+
+                        <ImageView
+                            android:layout_height="50dp"
+                            android:background="@drawable/rounded_white_button"
+                            android:padding="5dp"
+                            android:src="@drawable/address" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:textSize="12sp"
+                            android:id="@+id/address_edt"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/rounded_white_button"
+                            android:hint="Address"
+                            android:paddingLeft="8dp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@drawable/rounded_white_button">
+
+                        <ImageView
+                            android:layout_height="50dp"
+                            android:background="@drawable/rounded_white_button"
+                            android:padding="6dp"
+                            android:src="@drawable/birthday" />
+
+                        <!-- Adjusted DatePicker layout_width and added layout_gravity -->
+                        <DatePicker
+                            android:id="@+id/birthday_picker"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/rounded_white_button"
+                            android:paddingLeft="8dp"
+                            android:textSize="12sp" />
+
+                    </TableRow>
+                </TableLayout>
+            </ScrollView>
+        </TableRow>
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
