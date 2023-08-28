@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.example.contactsbook.R
 import java.text.SimpleDateFormat
@@ -25,6 +26,7 @@ class ContactInformationActivity : AppCompatActivity() {
     private lateinit var birthday_in_txt : TextView
     private lateinit var contactContentProvider : ContactContentProvider
     private var  longId : Long = 0
+
 
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
@@ -89,9 +91,67 @@ class ContactInformationActivity : AppCompatActivity() {
         Log.v("check_value","$contactdetails.emailAddresses")
 
     }
-    fun UpdateContactInfo(view: View) {}
-    fun ShareContactInfo(view: View) {}
-    fun DeleteContactInfo(view: View) {}
+    fun UpdateContactInfo(view: View) {
+        // Create an intent to open the ContactDetailsActivity
+        val intent2 = Intent(this, UpdateContactInformation::class.java).apply {
+            putExtra("contactID", longId)
+////            putExtra("contactName", name_in_txt.text.toString().trim())
+////            putExtra("contactNumber", phone_in_txt.text.toString().trim())
+////            putExtra("contactEmail", email_in_txt.text.toString().trim())
+////            putExtra("contactAddress", address_in_txt.text.toString().trim())
+        }
+        startActivity(intent2)
+        Log.v("check","update but called")
+    }
+    fun ShareContactInfo(view: View) {
+        val contactdetails : ContactContentProvider.ContactDetails = contactContentProvider.getContactDetails(longId!!)
+
+        val contactInformation = "Name: ${contactdetails.displayName}\nPhone: ${contactdetails.phoneNumbers}"
+
+        // Create an intent to share text
+        val sharingIntent = Intent(Intent.ACTION_SEND)
+        sharingIntent.type = "text/plain"
+        sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "Contact Information")
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, contactInformation)
+
+        // Start the sharing activity
+        startActivity(Intent.createChooser(sharingIntent, "Share Contact Information"))
+    }
+    fun DeleteContactInfo(view: View) {
+        // Create an AlertDialog.Builder
+        val alertDialogBuilder = AlertDialog.Builder(this)
+
+        // Set the title and message for the dialog
+        alertDialogBuilder.setTitle("Delete Contact")
+        alertDialogBuilder.setMessage("Are you sure you want to delete this contact?")
+
+        // Set positive button
+        alertDialogBuilder.setPositiveButton("Yes") { dialog, which ->
+            // Code to handle positive button click (delete the contact)
+            val deleteResult = contactContentProvider.deleteContactByID(longId)
+
+            if (deleteResult) {
+                // Deletion successful
+                Toast.makeText(this, "Contact deleted", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this,MainActivity::class.java)
+                startActivity(intent)
+            } else {
+                // Deletion failed
+                Toast.makeText(this, "Failed to delete contact", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Set negative button
+        alertDialogBuilder.setNegativeButton("No") { dialog, which ->
+            // Code to handle negative button click (dismiss the dialog)
+            dialog.dismiss()
+        }
+
+        // Create and show the AlertDialog
+        val alertDialog: AlertDialog = alertDialogBuilder.create()
+        alertDialog.show()
+
+    }
 
     fun ShowDetailsFunc(view: View) {
         // update buttonUI

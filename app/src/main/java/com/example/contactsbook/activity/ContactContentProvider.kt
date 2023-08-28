@@ -1,11 +1,9 @@
 package com.example.contactsbook.activity
 
-import android.content.ContentResolver
-import android.content.Context
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.Manifest
-import android.content.ContentUris
+import android.content.*
 import android.provider.ContactsContract
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -207,6 +205,77 @@ class ContactContentProvider(private val context: Context) {
 
         return ContactDetails(displayName, phoneNumber.toString(), emailAddress.toString(), address.toString(), birthday.toString())
     }
+    fun updateContactByID(contactId: Long, updatedDetails: ContactDetails): Boolean {
+        val contentResolver = context.contentResolver
+
+        val selection = ContactsContract.Data.CONTACT_ID + " = ?"
+
+        val selectionArgs = arrayOf(contactId.toString())
+
+        val contentValues = ContentValues().apply {
+            put(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME, updatedDetails.displayName)
+        }
+
+        contentResolver.update(
+            ContactsContract.Data.CONTENT_URI,
+            contentValues,
+            selection,
+            selectionArgs
+        )
+
+        // Update phone number
+        val phoneValues = ContentValues().apply {
+            put(ContactsContract.CommonDataKinds.Phone.NUMBER, updatedDetails.phoneNumbers)
+        }
+
+        contentResolver.update(
+            ContactsContract.Data.CONTENT_URI,
+            phoneValues,
+            ContactsContract.Data.CONTACT_ID + " = ? AND " + ContactsContract.Data.MIMETYPE + " = ?",
+            arrayOf(contactId.toString(), ContactsContract.CommonDataKinds.Phone.CONTENT_ITEM_TYPE)
+        )
+
+        // Update email address
+        val emailValues = ContentValues().apply {
+            put(ContactsContract.CommonDataKinds.Email.ADDRESS, updatedDetails.emailAddresses)
+        }
+
+        contentResolver.update(
+            ContactsContract.Data.CONTENT_URI,
+            emailValues,
+            ContactsContract.Data.CONTACT_ID + " = ? AND " + ContactsContract.Data.MIMETYPE + " = ?",
+            arrayOf(contactId.toString(), ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE)
+        )
+
+        // Update address
+        val addressValues = ContentValues().apply {
+            put(ContactsContract.CommonDataKinds.StructuredPostal.FORMATTED_ADDRESS, updatedDetails.address)
+        }
+
+        contentResolver.update(
+            ContactsContract.Data.CONTENT_URI,
+            addressValues,
+            ContactsContract.Data.CONTACT_ID + " = ? AND " + ContactsContract.Data.MIMETYPE + " = ?",
+            arrayOf(contactId.toString(), ContactsContract.CommonDataKinds.StructuredPostal.CONTENT_ITEM_TYPE)
+        )
+
+        return true
+    }
+    fun deleteContactByID(contactId: Long): Boolean {
+        val contentResolver = context.contentResolver
+
+        // Construct the URI for the specific contact using the provided contact ID
+        val contactUri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, contactId)
+
+        // Delete the contact using the content resolver
+        val deletedRows = contentResolver.delete(contactUri, null, null)
+
+        // Return true if the delete was successful, false otherwise
+        return deletedRows > 0
+    }
+
+
+
 
     data class ContactDetails(
             val displayName: String,
