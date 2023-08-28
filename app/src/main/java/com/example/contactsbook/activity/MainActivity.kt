@@ -2,6 +2,8 @@ package com.example.contactsbook.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -31,7 +33,48 @@ class MainActivity : AppCompatActivity() {
 
         // Fetch contacts and display in ListView
         displayContacts()
+        val searchEditText: EditText = findViewById(R.id.appCompatEditText)
+        // Set up the TextWatcher for the searchEditText
+        searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val query = s.toString()
+                sortAndRefreshList(query)
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
     }
+    private fun sortAndRefreshList(query: String) {
+        val contacts = contactProvider.fetchContacts()
+
+        // Filter and sort the contacts list based on the search query
+        val filteredAndSortedContacts = contacts.filter { (name, _) ->
+            name.contains(query, true)
+        }.sortedBy { (name, _) -> name }
+
+        if (filteredAndSortedContacts.isEmpty()) {
+            imageWhenNoData.visibility = View.VISIBLE
+            textWhenNoData.visibility = View.VISIBLE
+            contactsListView.adapter = null // Clear the adapter to hide the list
+        } else {
+            imageWhenNoData.visibility = View.GONE
+            textWhenNoData.visibility = View.GONE
+            val contactStrings = filteredAndSortedContacts.map { "${it.first}" }
+            val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, contactStrings)
+            contactsListView.adapter = adapter
+
+            contactsListView.setOnItemClickListener { _, _, position, _ ->
+                val selectedContact = filteredAndSortedContacts[position]
+                val intent = Intent(this, ContactInformationActivity::class.java).apply {
+                    putExtra("contactID", selectedContact.second)
+                }
+                startActivity(intent)
+            }
+        }
+    }
+
     private fun displayContacts() {
         // Fetch contacts using the ContactContentProvider
         val contacts = contactProvider.fetchContacts()
