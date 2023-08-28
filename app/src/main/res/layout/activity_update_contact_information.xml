@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.UpdateContactInformation">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:text="UPDATE"
+            android:gravity="center"
+            android:textSize ="24sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+        <TableRow
+            android:layout_marginTop ="10dp"
+            android:background="@drawable/rounded_white_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <!-- Left Column -->
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="start">
+
+                <EditText
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/edt_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/rounded_white_button"
+                    android:layout_gravity="center"
+                    android:hint="Name"
+                    android:paddingLeft="10dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle ="bold"/>
+
+            </LinearLayout>
+            <!-- Right Column -->
+
+            <ImageView
+                android:background="@drawable/rounded_white_button"
+                android:layout_marginRight="18dp"
+                android:id="@+id/img_avt"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:padding = "5dp"
+                android:src="@drawable/avata_simple"
+                android:gravity="end" />
+
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="5dp"
+            android:background="@drawable/rounded_white_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <!-- Left Column -->
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="start">
+
+
+                <EditText
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/edt_phonenum"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/rounded_white_button"
+                    android:layout_gravity="center"
+                    android:hint="Phone number"
+                    android:paddingLeft="10dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle ="bold"/>
+
+            </LinearLayout>
+            <!-- Right Column -->
+
+            <ImageView
+                android:background="@drawable/rounded_white_button"
+                android:layout_marginRight="18dp"
+                android:id="@+id/img_phoneicon"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:padding = "5dp"
+                android:src="@drawable/phone_number_icon"
+                android:gravity="end" />
+
+        </TableRow>
+        <TableRow
+            android:layout_marginTop ="10dp"
+            android:background="@drawable/rounded_white_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <!-- Left Column -->
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="start">
+
+                <EditText
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/edt_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/rounded_white_button"
+                    android:layout_gravity="center"
+                    android:hint="Email address"
+                    android:paddingLeft="10dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle ="bold"/>
+            </LinearLayout>
+            <!-- Right Column -->
+
+            <ImageView
+                android:background="@drawable/rounded_white_button"
+                android:layout_marginRight="18dp"
+                android:id="@+id/img_email_con"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:padding = "5dp"
+                android:src="@drawable/email"
+                android:gravity="end" />
+
+        </TableRow>
+        <TableRow
+            android:layout_marginTop ="10dp"
+            android:background="@drawable/rounded_white_button"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <!-- Left Column -->
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="start">
+
+                <EditText
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="20dp"
+                    android:id="@+id/edt_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/rounded_white_button"
+                    android:layout_gravity="center"
+                    android:hint="Address"
+                    android:paddingLeft="10dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textStyle ="bold"/>
+
+            </LinearLayout>
+            <!-- Right Column -->
+
+            <ImageView
+                android:background="@drawable/rounded_white_button"
+                android:layout_marginRight="18dp"
+                android:id="@+id/img_address"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_weight="2"
+                android:padding = "5dp"
+                android:src="@drawable/address"
+                android:gravity="end" />
+
+        </TableRow>
+        <TableRow>
+            <TextView/>
+        </TableRow>
+        <TableRow>
+
+        </TableRow>
+        <TableRow>
+            <Button
+                android:layout_marginTop="15dp"
+                android:background="@drawable/rounded_blue_button"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:onClick="updateConfirmFunc"
+                android:text="OK"
+                android:id="@+id/posi_but"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:padding = "5dp"
+                android:src="@drawable/address"
+                android:gravity="center"/>
+        </TableRow>
+        <TableRow>
+            <Button
+                android:onClick="updateCancelFunc"
+                android:layout_marginTop="18dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/rounded_red_button"
+                android:text="Cancel"
+                android:id="@+id/nega_but"
+                android:layout_width="10dp"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:padding = "5dp"
+                android:src="@drawable/address"
+                android:gravity="center"/>
+        </TableRow>
+
+
+
+
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
